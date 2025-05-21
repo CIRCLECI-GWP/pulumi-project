@@ -55,6 +55,7 @@ cluster = container.Cluster(
             "https://www.googleapis.com/auth/logging.write",
             "https://www.googleapis.com/auth/monitoring",
         ],
+        'assign_public_ip': False,
     }
 )
 
