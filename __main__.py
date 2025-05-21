@@ -117,7 +117,7 @@ gke_deployment = Deployment(
             }
         }
     },
-    __opts__=ResourceOptions(provider=cluster_provider)
+    opts=ResourceOptions(provider=cluster_provider)
 )
 
 deploy_name = gke_deployment
@@ -133,7 +133,7 @@ gke_service = Service(
         'ports': [{'port': 80, 'target_port': 5000}],
         'selector': app_label,
     },
-    __opts__=ResourceOptions(provider=cluster_provider)
+    opts=ResourceOptions(provider=cluster_provider)
 )
 
 pulumi.export("kubeconfig", k8s_config)
