@@ -85,6 +85,14 @@ jobs:
             gcloud auth list
             cat ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json | jq .client_email
       - run:
+          name: Test cluster creation with gcloud
+          command: |
+            gcloud container clusters create test-ci-cluster --zone=us-east1-b --project=cicd-workshops --quiet || true
+      - run:
+          name: Check enabled services
+          command: |
+            gcloud services list --enabled --project=cicd-workshops
+      - run:
           name: Debug - Show service account email
           command: |
             echo "GOOGLE_APPLICATION_CREDENTIALS: $GOOGLE_APPLICATION_CREDENTIALS"
