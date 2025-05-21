@@ -1,6 +1,3 @@
-# config:
-#   gcp:project: cicd-workshops
-
 config:
   gcp:project: cicd-workshops-460410
   gcp:region: us-east1
