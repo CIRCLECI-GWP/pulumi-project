@@ -93,7 +93,7 @@ gke_context = gcp_project+'_'+gcp_zone+'_'+cluster_name
 k8s_config = pulumi.Output.all(gke_masterAuth,gke_endpoint,gke_context).apply(lambda args: generate_k8_config(*args))
 
 cluster_provider = pulumi_kubernetes.Provider(cluster_name, kubeconfig=k8s_config)
-ns = Namespace(cluster_name, __opts__=ResourceOptions(provider=cluster_provider))
+ns = Namespace(cluster_name, opts=ResourceOptions(provider=cluster_provider))
 
 gke_deployment = Deployment(
     app_name,
