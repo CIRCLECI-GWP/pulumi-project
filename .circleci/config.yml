@@ -87,7 +87,7 @@ jobs:
       - run:
           name: Test cluster creation with gcloud
           command: |
-            gcloud container clusters create test-ci-cluster --zone=us-east1-b --project=cicd-workshops-460410 --quiet || true
+            gcloud container clusters create test-ci-cluster --zone=us-east1-b --disk-type=pd-standard --quiet || true
       - run:
           name: Check enabled services
           command: |
