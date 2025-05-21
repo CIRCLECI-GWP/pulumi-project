@@ -2,7 +2,7 @@
 #   gcp:project: cicd-workshops
 
 config:
-  gcp:project: cicd-workshops
+  gcp:project: cicd-workshops-460410
   gcp:region: us-east1
   gcp:zone: us-east1-d
   gke:name: k8s
