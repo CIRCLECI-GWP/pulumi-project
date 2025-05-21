@@ -1,0 +1,3 @@
+*.pyc
+venv/
+cicd_demo_gcp_creds.json
