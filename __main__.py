@@ -46,19 +46,18 @@ cluster = container.Cluster(
     min_master_version='latest',
     node_version='latest',
     enable_private_nodes=True, 
-    node_config=container.ClusterNodeConfigArgs(
-        machine_type=machine_type,
-        disk_type='pd-standard',
-        disk_size_gb=100,
-        oauth_scopes=[
+    node_config={
+        'machine_type': machine_type,
+        'disk_type': 'pd-standard',
+        'disk_size_gb': 100,
+        'oauth_scopes': [
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/devstorage.read_only",
             "https://www.googleapis.com/auth/logging.write",
             "https://www.googleapis.com/auth/monitoring",
         ]
-    )
+    }
 )
-
 
 # Set the Kubeconfig file values here
 def generate_k8_config(master_auth, endpoint, context):
