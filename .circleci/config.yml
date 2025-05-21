@@ -85,6 +85,11 @@ jobs:
             gcloud auth list
             cat ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json | jq .client_email
       - run:
+          name: Debug - Show service account email
+          command: |
+            echo "GOOGLE_APPLICATION_CREDENTIALS: $GOOGLE_APPLICATION_CREDENTIALS"
+            cat $GOOGLE_APPLICATION_CREDENTIALS | grep client_email
+      - run:
           name: Select Pulumi stack
           command: |
             pulumi stack select k8s
