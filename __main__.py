@@ -12,11 +12,23 @@
 
 import os
 import pulumi
+import json
 import pulumi_kubernetes
 from pulumi import ResourceOptions
 from pulumi_kubernetes.apps.v1 import Deployment
 from pulumi_kubernetes.core.v1 import Namespace, Pod, Service
 from pulumi_gcp import container
+
+
+# Get the path to the credentials file
+creds_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+if creds_path and os.path.exists(creds_path):
+    with open(creds_path) as f:
+        creds = json.load(f)
+        service_account_email = creds.get("client_email")
+        pulumi.log.info(f"Pulumi is using service account: {service_account_email}")
+else:
+    pulumi.log.warn("GOOGLE_APPLICATION_CREDENTIALS not set or file does not exist")
 
 conf = pulumi.Config('gke')
 gcp_conf = pulumi.Config('gcp')
