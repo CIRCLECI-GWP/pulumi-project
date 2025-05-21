@@ -61,7 +61,7 @@ jobs:
             source $BASH_ENV
             gcloud auth activate-service-account --key-file ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json
       - run:
-          name: Debug credentials file.
+          name: Debug credentials file
           command: |
             cat ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json
       - run:
