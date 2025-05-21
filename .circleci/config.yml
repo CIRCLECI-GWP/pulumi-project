@@ -91,7 +91,7 @@ jobs:
       - run:
           name: Check enabled services
           command: |
-            gcloud services list --enabled --project=cicd-workshops
+            gcloud services list --enabled --project=cicd-workshops-460410
       - run:
           name: Debug - Show service account email
           command: |
