@@ -46,6 +46,8 @@ cluster = container.Cluster(
     node_version='latest',
     node_config={
         'machine_type': machine_type,
+        'disk_type': 'pd-standard',
+        'disk_size_gb': 100,
         'oauth_scopes': [
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/devstorage.read_only",
