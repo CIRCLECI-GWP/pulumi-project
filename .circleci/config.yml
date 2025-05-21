@@ -60,6 +60,11 @@ jobs:
             echo 'export PATH=$PATH:~/google-cloud-sdk/bin' >> $BASH_ENV
             source $BASH_ENV
             gcloud auth activate-service-account --key-file ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json
+      - run:
+          name: Debug credentials file
+          command: |
+            cat ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json
+            jq . ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json || echo "Invalid JSON"
       - pulumi/update:
           stack: k8s
           working_directory: ${HOME}/project/pulumi-project/
