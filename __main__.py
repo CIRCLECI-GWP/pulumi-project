@@ -45,7 +45,6 @@ cluster = container.Cluster(
     initial_node_count=2,
     min_master_version='latest',
     node_version='latest',
-    enable_private_nodes=True, 
     node_config={
         'machine_type': machine_type,
         'disk_type': 'pd-standard',
