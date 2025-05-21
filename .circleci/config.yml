@@ -54,6 +54,7 @@ jobs:
             pip install pulumi pulumi-gcp pulumi-kubernetes
             curl -o gcp-cli.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz
             tar -xzvf gcp-cli.tar.gz
+            mkdir -p ${HOME}/project/pulumi-project
             echo ${GOOGLE_CLOUD_KEYS} | base64 --decode --ignore-garbage > ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json
             ./google-cloud-sdk/install.sh  --quiet 
             echo 'export PATH=$PATH:~/google-cloud-sdk/bin' >> $BASH_ENV
