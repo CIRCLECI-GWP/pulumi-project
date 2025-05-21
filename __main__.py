@@ -55,10 +55,7 @@ cluster = container.Cluster(
             "https://www.googleapis.com/auth/devstorage.read_only",
             "https://www.googleapis.com/auth/logging.write",
             "https://www.googleapis.com/auth/monitoring",
-        ],
-        network_interfaces=[container.ClusterNodeConfigNetworkInterfaceArgs(
-            no_external_ip=True
-        )]
+        ]
     )
 )
 
