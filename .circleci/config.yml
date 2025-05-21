@@ -84,10 +84,10 @@ jobs:
           command: |
             gcloud auth list
             cat ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json | jq .client_email
-    - run:
-        name: Set gcloud Project
-        command: |
-          gcloud config set project cicd-workshops-460410
+      - run:
+          name: Set gcloud Project
+          command: |
+            gcloud config set project cicd-workshops-460410
       - run:
           name: Test cluster creation with gcloud
           command: |
