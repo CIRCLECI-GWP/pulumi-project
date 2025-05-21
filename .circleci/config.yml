@@ -64,13 +64,17 @@ jobs:
           name: Debug credentials file
           command: |
             cat ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json
-            jq . ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json || echo "Invalid JSON"
       - run:
           name: Final check credentials file
           command: |
             ls -l ${HOME}/project/pulumi-project/
             cat ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json
             jq . ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json || echo "Invalid JSON"
+      - run:
+          name: Set GOOGLE_APPLICATION_CREDENTIALS
+          command: |
+            echo "export GOOGLE_APPLICATION_CREDENTIALS=${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json" >> $BASH_ENV
+            source $BASH_ENV
       - pulumi/update:
           stack: k8s
           working_directory: ${HOME}/project/pulumi-project/
