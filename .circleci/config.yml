@@ -85,6 +85,10 @@ jobs:
             gcloud auth list
             cat ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json | jq .client_email
       - run:
+          name: Select Pulumi stack
+          command: |
+            pulumi stack select k8s
+      - run:
           name: Pulumi up
           command: |
             export GOOGLE_APPLICATION_CREDENTIALS=${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json
