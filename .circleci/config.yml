@@ -74,11 +74,6 @@ jobs:
           command: |
             source $BASH_ENV
             gcloud components install gke-gcloud-auth-plugin --quiet
-      - run:
-          name: Check GKE Auth Plugin
-          command: |
-            source $BASH_ENV
-            gke-gcloud-auth-plugin --help
       - pulumi/refresh:
           stack: k8s
           working_directory: ${HOME}/project/pulumi-project/
