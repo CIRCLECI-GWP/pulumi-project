@@ -1,15 +1,3 @@
-# """A Google Cloud Python Pulumi program"""
-
-# import pulumi
-# from pulumi_gcp import storage
-
-# # Create a GCP resource (Storage Bucket)
-# bucket = storage.Bucket('my-bucket', location="US")
-
-# # Export the DNS name of the bucket
-# pulumi.export('bucket_name', bucket.url)
-#================================
-
 import os
 import pulumi
 import pulumi_kubernetes
@@ -91,7 +79,7 @@ users:
 
     return config
 
-gke_masterAuth = cluster.master_auth['clusterCaCertificate']
+gke_masterAuth = cluster.master_auth.cluster_ca_certificate
 gke_endpoint = cluster.endpoint
 gke_context = gcp_project+'_'+gcp_zone+'_'+cluster_name
 
