@@ -67,15 +67,12 @@ preferences: {prefs}
 users:
 - name: {context}
   user:
-    auth-provider:
-      config:
-        cmd-args: config config-helper --format=json
-        cmd-path: gcloud
-        expiry-key: '{expToken}'
-        token-key: '{tokenKey}'
-      name: gcp
+    exec:
+      apiVersion: "client.authentication.k8s.io/v1beta1"
+      command: "gke-gcloud-auth-plugin"
+      provideClusterInfo: true  
     '''.format(masterAuth=master_auth, context=context, endpoint=endpoint,
-            prefs='{}', expToken = '{.credential.token_expiry}', tokenKey='{.credential.access_token}')
+            prefs='{}')
 
     return config
 
