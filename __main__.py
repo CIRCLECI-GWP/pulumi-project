@@ -25,6 +25,7 @@ gcp_conf = pulumi.Config('gcp')
 stack_name = conf.require('name')
 gcp_project = gcp_conf.require('project')
 gcp_zone = gcp_conf.require('zone')
+location = gcp_conf.require("zone")
 
 app_name = 'cicd-app'
 app_label = {'appClass':app_name}
@@ -42,6 +43,7 @@ machine_type = 'e2-small'
 
 cluster = container.Cluster(
     cluster_name,
+    location,
     initial_node_count=2,
     min_master_version='latest',
     node_version='latest',

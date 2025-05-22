@@ -1,5 +1,5 @@
 config:
   gcp:project: cicd-workshops-460410
-  gcp:region: us-east1
-  gcp:zone: us-east1-d
+  gcp:region: us-central1
+  gcp:zone: us-central1-a
   gke:name: k8s
