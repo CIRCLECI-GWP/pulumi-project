@@ -68,7 +68,16 @@ jobs:
       - run:
           name: Set gcloud Project
           command: |
-            gcloud config set project cicd-workshops-460410
+            gcloud config set project $PROJECT_ID
+      - run:
+          name: Install gke-gcloud-auth-plugin
+          command: |
+            curl -LO "https://storage.googleapis.com/artifacts.k8s.io/binaries/kubectl-auth-gke-plugin/release/v0.1.0/linux/amd64/gke-gcloud-auth-plugin"
+            chmod +x gke-gcloud-auth-plugin
+            sudo mv gke-gcloud-auth-plugin /usr/local/bin/
+      - run:
+          name: Check GKE Auth Plugin
+          command: gke-gcloud-auth-plugin --help
       - pulumi/refresh:
           stack: k8s
           working_directory: ${HOME}/project/pulumi-project/
