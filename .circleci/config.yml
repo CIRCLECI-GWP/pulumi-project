@@ -69,6 +69,9 @@ jobs:
           name: Set gcloud Project
           command: |
             gcloud config set project cicd-workshops-460410
+      - pulumi/refresh:
+          stack: k8s
+          working_directory: ${HOME}/project/pulumi-project/
       - pulumi/update:
           stack: k8s
           working_directory: ${HOME}/project/pulumi-project/
