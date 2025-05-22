@@ -47,7 +47,7 @@ jobs:
       - pulumi/login:
           access-token: ${PULUMI_ACCESS_TOKEN}
       - run:
-          name: Install dependecies
+          name: Install Python and GCP SDK Dependencies
           command: |
             cd ~/
             pip install --upgrade pip
@@ -56,8 +56,8 @@ jobs:
             tar -xzvf gcp-cli.tar.gz
             mkdir -p ${HOME}/project/pulumi-project
             echo ${GOOGLE_CLOUD_KEYS} | base64 --decode --ignore-garbage > ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json
-            ./google-cloud-sdk/install.sh  --quiet 
-            echo 'export PATH=$PATH:~/google-cloud-sdk/bin' >> $BASH_ENV
+            ./google-cloud-sdk/install.sh --quiet 
+            echo 'export PATH=$PATH:$HOME/google-cloud-sdk/bin' >> $BASH_ENV
             source $BASH_ENV
             gcloud auth activate-service-account --key-file ${HOME}/project/pulumi-project/cicd_demo_gcp_creds.json
       - run:
@@ -70,14 +70,15 @@ jobs:
           command: |
             gcloud config set project $PROJECT_ID
       - run:
-          name: Install gke-gcloud-auth-plugin
+          name: Install GKE Auth Plugin via gcloud
           command: |
-            curl -LO "https://storage.googleapis.com/artifacts.k8s.io/binaries/kubectl-auth-gke-plugin/release/v0.1.0/linux/amd64/gke-gcloud-auth-plugin"
-            chmod +x gke-gcloud-auth-plugin
-            sudo mv gke-gcloud-auth-plugin /usr/local/bin/
+            source $BASH_ENV
+            gcloud components install gke-gcloud-auth-plugin --quiet
       - run:
           name: Check GKE Auth Plugin
-          command: gke-gcloud-auth-plugin --help
+          command: |
+            source $BASH_ENV
+            gke-gcloud-auth-plugin --help
       - pulumi/refresh:
           stack: k8s
           working_directory: ${HOME}/project/pulumi-project/
