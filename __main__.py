@@ -43,7 +43,7 @@ machine_type = 'e2-small'
 
 cluster = container.Cluster(
     cluster_name,
-    location,
+    location=location,
     initial_node_count=2,
     min_master_version='latest',
     node_version='latest',
