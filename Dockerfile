@@ -1,10 +1,10 @@
-FROM python:3.7.2
+FROM python:3.13.3-slim
 
-RUN mkdir /opt/hello_world/
-WORKDIR /opt/hello_world/
+WORKDIR /opt/hello_world
+COPY dist/hello_world.py .
 
-COPY dist/hello_world /opt/hello_world/
+RUN pip install flask
 
-EXPOSE 80
+EXPOSE 5000
 
-CMD [ "./hello_world" ]
+CMD ["python", "hello_world.py"]
