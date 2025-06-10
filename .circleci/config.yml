@@ -75,11 +75,17 @@ jobs:
             source $BASH_ENV
             gcloud components install gke-gcloud-auth-plugin --quiet
       - pulumi/refresh:
-          stack: k8s
+          stack: smoketest
           working_directory: ${HOME}/project/pulumi-project/
       - pulumi/update:
-          stack: k8s
+          stack: smoketest
           working_directory: ${HOME}/project/pulumi-project/
+      - run:
+          name: Run Smoke Test against GKE
+          command: |
+            echo 'Initializing Smoke Tests on the GKE Cluster'
+            ./tests/smoke_test
+            echo "GKE Cluster Tested & Destroyed"
 workflows:
   build_test_deploy:
     jobs:

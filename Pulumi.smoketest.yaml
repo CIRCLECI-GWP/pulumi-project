@@ -1,0 +1,5 @@
+config:
+  gcp:project: cicd-workshops-460410-462515
+  gcp:region: us-central1
+  gcp:zone: us-central1-a
+  gke:name: smoketest
