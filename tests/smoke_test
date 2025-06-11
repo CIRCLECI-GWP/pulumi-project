@@ -5,7 +5,7 @@
 TIME_OUT=300
 TIME_OUT_COUNT=0
 PULUMI_STACK="smoketest"
-PULUMI_CWD="pulumi/gcp/gke/"
+PULUMI_CWD="."
 SMOKE_IP=$(pulumi stack --stack $PULUMI_STACK --cwd $PULUMI_CWD output app_endpoint_ip)
 SMOKE_URL="http://$SMOKE_IP"
 
